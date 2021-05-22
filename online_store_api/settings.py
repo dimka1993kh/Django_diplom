@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'online_store_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'omline_store_api',
+        'NAME': 'online_store_api',
         'USER': 'postgres',
         'PASSWORD' : 'dimka4100141',
         'HOST': '127.0.0.1',
