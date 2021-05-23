@@ -38,12 +38,16 @@ class ProductSerializer(serializers.ModelSerializer):
     def validate_creation_date(self, value):
         if value != datetime.datetime.now().date():
             raise serializers.ValidationError("Дата создания должна быть сегоднешним днем")
+        else:
+            return value
 
     def validate_update_date(self, value):
         if value == datetime.date(1970, 1, 1):
             return value
         elif value != datetime.datetime.now().date():
             raise serializers.ValidationError("Дата обновления должна быть сегоднешним днем") 
+        else:
+            return value
         
     
     class Meta:
