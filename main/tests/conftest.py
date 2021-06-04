@@ -1,13 +1,20 @@
 import pytest 
 # from model_bakery import baker
+from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
 
 from main.models import Product
 
 
 @pytest.fixture
-def create_api_client():
-    return APIClient()
+def admin_client():
+    client = APIClient(True)
+    user = User.objects.create(username="admin", password="admin", is_superuser=True, is_staff=True)
+    Token.objects.create(user=user)
+    token = Token.objects.get(user__username='admin')
+    client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+    return client
 
 @pytest.fixture
 def create_products_for_test_product_review():

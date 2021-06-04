@@ -12,7 +12,8 @@ class Product(models.Model):
         auto_now=True
         )
     update_date = models.DateField(
-        default=datetime.date(1970, 1, 1),
+        null=True,
+        default=None,
         )
 
     class Meta:

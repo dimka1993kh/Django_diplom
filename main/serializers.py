@@ -29,7 +29,7 @@ class ProductSerializer(serializers.ModelSerializer):
         default=datetime.datetime.now().date(),
     )
     update_date = serializers.DateField(
-        default=datetime.date(1970, 1, 1)
+        default=None
     )
 
     def validate_price(self, value):
@@ -45,7 +45,7 @@ class ProductSerializer(serializers.ModelSerializer):
             return value
 
     def validate_update_date(self, value):
-        if value == datetime.date(1970, 1, 1):
+        if value is None:
             return value
         elif value != datetime.datetime.now().date():
             raise serializers.ValidationError("Дата обновления должна быть сегоднешним днем") 
@@ -84,7 +84,7 @@ class ProductReviewSerializer(serializers.ModelSerializer):
 
     def validate_creation_date(self, value):
         if value != datetime.datetime.now().date():
-            raise serializers.ValidationError("Дата создания должна быть сегоднешним днем")
+            raise serializers.ValidationError("Дата создания должна быть сегодняшним днем")
         else:
             return value
 
