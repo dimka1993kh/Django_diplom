@@ -7,5 +7,5 @@ new_product = Product(
     title="test_product",
     description="test_description",
     price=888.9,
-    creation_date=datetime.datetime.now().date()
+    creation_date=datetime.now().date()
 )
